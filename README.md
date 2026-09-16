@@ -52,6 +52,5 @@ Community-library/
     │   └── LibraryRepository.cs
     └── Forms/
         └── MainForm.cs
-```
 
 
