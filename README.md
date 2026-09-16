@@ -10,8 +10,6 @@ The project is designed for library staff or volunteers who need one place to ma
 
 ## Features
 
-The starter project contains the core OOP model and project structure for:
-
 - Book catalogue records
 - Library member records
 - Lending transactions
@@ -24,7 +22,7 @@ The starter project contains the core OOP model and project structure for:
 
 ## Current progress
 
-The project foundation and main domain classes are in place. The Windows Forms user interface, database repository layer and transaction workflows will be developed in the next stages.
+Day 2 adds a working book catalogue record feature. Book details can be entered through the Windows Forms interface, validated, saved to a local SQLite database and displayed in a records table. The records can also be refreshed after saving. The existing member and loan sections remain available for development in later stages.
 
 ## Technology used
 
@@ -32,7 +30,7 @@ The project foundation and main domain classes are in place. The Windows Forms u
 - .NET 8
 - Windows Forms
 - SQLite
-- Visual Studio
+- Visual Studio Code or Visual Studio
 - Git and GitHub
 
 ## Project structure
@@ -56,6 +54,12 @@ Community-library/
         └── MainForm.cs
 ```
 
+## Running instructions
 
+1. Open a terminal in the project folder.
+2. Run `dotnet restore .\CommunityLibrary\CommunityLibrary.csproj`.
+3. Run `dotnet build .\CommunityLibrary\CommunityLibrary.csproj`.
+4. Run `dotnet run --project .\CommunityLibrary\CommunityLibrary.csproj`.
+5. Enter book details and select **Save Book** to create a record.
 
-
+The SQLite database file is created automatically in the application's output folder when the program starts.
