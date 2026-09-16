@@ -54,12 +54,4 @@ Community-library/
         └── MainForm.cs
 ```
 
-## Running instructions
 
-1. Open a terminal in the project folder.
-2. Run `dotnet restore .\CommunityLibrary\CommunityLibrary.csproj`.
-3. Run `dotnet build .\CommunityLibrary\CommunityLibrary.csproj`.
-4. Run `dotnet run --project .\CommunityLibrary\CommunityLibrary.csproj`.
-5. Enter book details and select **Save Book** to create a record.
-
-The SQLite database file is created automatically in the application's output folder when the program starts.
