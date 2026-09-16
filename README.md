@@ -64,8 +64,4 @@ Community-library/
 4. Build the solution.
 5. Run the project with the Visual Studio Start button.
 
-## References and tools used
 
-The project follows the approved project proposal and the ITS203 assessment requirements. Microsoft Learn and SQLite documentation are used as technical references during development.
-
-Significant external assistance used during development should be acknowledged in the project documentation as required by the assessment brief.
