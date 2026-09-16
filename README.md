@@ -56,12 +56,6 @@ Community-library/
         └── MainForm.cs
 ```
 
-## Running instructions
 
-1. Install Visual Studio 2022 with the .NET desktop development workload.
-2. Open `CommunityLibrary.sln` in Visual Studio.
-3. Restore the NuGet packages when prompted.
-4. Build the solution.
-5. Run the project with the Visual Studio Start button.
 
 
