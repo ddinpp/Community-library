@@ -132,16 +132,29 @@ public class MainForm : Form
         var category = categoryTextBox.Text.Trim();
         var copies = (int)copiesInput.Value;
 
-        if (string.IsNullOrWhiteSpace(isbn) || string.IsNullOrWhiteSpace(title) ||
-            string.IsNullOrWhiteSpace(author) || string.IsNullOrWhiteSpace(category))
+        if (string.IsNullOrWhiteSpace(isbn) ||
+            string.IsNullOrWhiteSpace(title) ||
+            string.IsNullOrWhiteSpace(author) ||
+            string.IsNullOrWhiteSpace(category))
         {
-            MessageBox.Show("Please complete ISBN, title, author and category.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(
+                "Please complete ISBN, title, author and category.",
+                "Validation",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
             return;
         }
 
-        if (isbn.Length > 20 || title.Length > 150 || author.Length > 100 || category.Length > 80)
+        if (isbn.Length > 20 ||
+            title.Length > 150 ||
+            author.Length > 100 ||
+            category.Length > 80)
         {
-            MessageBox.Show("One or more fields are too long.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(
+                "One or more fields are too long.",
+                "Validation",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
             return;
         }
 
@@ -155,11 +168,23 @@ public class MainForm : Form
         }
         catch (SqliteException ex)
         {
-            MessageBox.Show($"The book could not be saved.\n\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                $"The book could not be saved.
+
+{ex.Message}",
+                "Database Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"The book could not be saved.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                $"The book could not be saved.
+
+{ex.Message}",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
     }
 
@@ -185,12 +210,24 @@ public class MainForm : Form
         catch (SqliteException ex)
         {
             statusLabel.Text = "Unable to load book records.";
-            MessageBox.Show($"The book records could not be loaded.\n\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                $"The book records could not be loaded.
+
+{ex.Message}",
+                "Database Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
         catch (Exception ex)
         {
             statusLabel.Text = "Unable to load book records.";
-            MessageBox.Show($"The book records could not be loaded.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                $"The book records could not be loaded.
+
+{ex.Message}",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
     }
 
