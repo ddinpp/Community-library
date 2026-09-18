@@ -169,9 +169,7 @@ public class MainForm : Form
         catch (SqliteException ex)
         {
             MessageBox.Show(
-                $"The book could not be saved.
-
-{ex.Message}",
+                $"The book could not be saved.\n\n{ex.Message}",
                 "Database Error",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
@@ -179,9 +177,7 @@ public class MainForm : Form
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"The book could not be saved.
-
-{ex.Message}",
+                $"The book could not be saved.\n\n{ex.Message}",
                 "Error",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
@@ -211,9 +207,7 @@ public class MainForm : Form
         {
             statusLabel.Text = "Unable to load book records.";
             MessageBox.Show(
-                $"The book records could not be loaded.
-
-{ex.Message}",
+                $"The book records could not be loaded.\n\n{ex.Message}",
                 "Database Error",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
@@ -222,9 +216,7 @@ public class MainForm : Form
         {
             statusLabel.Text = "Unable to load book records.";
             MessageBox.Show(
-                $"The book records could not be loaded.
-
-{ex.Message}",
+                $"The book records could not be loaded.\n\n{ex.Message}",
                 "Error",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
