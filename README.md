@@ -22,7 +22,7 @@ The project is designed for library staff or volunteers who need one place to ma
 
 ## Current progress
 
-Day 2 adds a working book catalogue record feature. Book details can be entered through the Windows Forms interface, validated, saved to a local SQLite database and displayed in a records table. The records can also be refreshed after saving. The existing member and loan sections remain available for development in later stages.
+Day 3 adds the first complete book-record workflow. Book details are entered through the Windows Forms interface, checked before saving, stored in the local SQLite database and displayed in the records table. Saved records remain available when the application is opened again, and the Refresh Records button reloads the current database records. Existing member and loan classes remain in the project for later development stages.
 
 ## Technology used
 
@@ -52,5 +52,4 @@ Community-library/
     │   └── LibraryRepository.cs
     └── Forms/
         └── MainForm.cs
-
-
+```
