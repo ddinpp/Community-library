@@ -22,7 +22,7 @@ The project is designed for library staff or volunteers who need one place to ma
 
 ## Current progress
 
-Day 3 adds the first complete book-record workflow. Book details are entered through the Windows Forms interface, checked before saving, stored in the local SQLite database and displayed in the records table. Saved records remain available when the application is opened again, and the Refresh Records button reloads the current database records. Existing member and loan classes remain in the project for later development stages.
+Day 4 completes the book-record stage. Book details are entered through the Windows Forms interface, checked before saving, stored in the local SQLite database and displayed in the records table. Saved records remain available when the application is opened again, and the Refresh Records button reloads the current database records. The project structure and existing member and loan classes are retained for future extension.
 
 ## Technology used
 
