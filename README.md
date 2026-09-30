@@ -22,7 +22,9 @@ The project is designed for library staff or volunteers who need one place to ma
 
 ## Current progress
 
-Day 4 completes the book-record stage. Book details are entered through the Windows Forms interface, checked before saving, stored in the local SQLite database and displayed in the records table. Saved records remain available when the application is opened again, and the Refresh Records button reloads the current database records. The project structure and existing member and loan classes are retained for future extension.
+The application now supports the main book catalogue workflow plus member and lending records. Books can be saved and displayed from SQLite, members can be registered and displayed, and available books can be issued to active members with a due date. Returning an active loan restores the book's available-copy count. The interface includes separate Books, Members and Loans tabs with refresh controls, and database transactions are used when issuing and returning books so related records stay consistent when an operation fails.
+
+The project continues to use the existing model structure, including the abstract LibraryItem base class, the Book subclass, Member and Loan models, the SQLite repository and the Windows Forms interface.
 
 ## Technology used
 
