@@ -14,6 +14,8 @@ The project provides one place to maintain catalogue records, register members a
 - Library member records
 - Lending transactions
 - Book returns
+- Customer view for browsing available books
+- Customer view for checking a selected member's loans
 - Overdue loan status checking
 - Local SQLite data storage
 - Input validation and exception handling
@@ -22,11 +24,13 @@ The project provides one place to maintain catalogue records, register members a
 
 ## Current progress
 
-The final application contains the core library workflow. Books can be saved and displayed from SQLite, members can be registered and displayed, available books can be issued to active members with a due date, and active loans can be returned. Returning a loan restores the book's available-copy count. Active loans are checked against the current date when records are displayed so overdue loans can be identified. The interface uses separate Books, Members and Loans tabs and includes validation and exception handling for user input and database operations.
+The final application contains the core library workflow. Books can be saved and displayed from SQLite, members can be registered and displayed, available books can be issued to active members with a due date, and active loans can be returned. Returning a loan restores the book's available-copy count. Active loans are checked against the current date when records are displayed so overdue loans can be identified. The interface includes separate Books, Members, Loans and Customer View tabs with validation and exception handling for user input and database operations.
+
+The Customer View provides a simple member-facing part of the application. A member can be selected from the active member list, available books can be browsed, and that member's loan records can be viewed without exposing the administration controls used to add catalogue records or manage lending transactions.
 
 The project uses an abstract LibraryItem base class, the Book subclass, Member and Loan models, a SQLite repository and a Windows Forms interface. Database transactions are used when issuing and returning books so the related loan and copy-count changes are committed together.
 
-The final scope focuses on the working catalogue, member and lending workflow rather than adding online accounts, reservations or payment features.
+The final scope focuses on the working catalogue, member, customer-view and lending workflow rather than adding online accounts, reservations or payment features.
 
 ## Technology used
 
