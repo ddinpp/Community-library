@@ -6,7 +6,7 @@ A C# Windows Forms desktop application for managing books, members and lending a
 
 ## Purpose
 
-The project is designed for library staff or volunteers who need one place to manage catalogue records, members and book loans instead of keeping these records in separate notebooks or spreadsheets.
+The project provides one place to maintain catalogue records, register members and manage book loans instead of keeping these records in separate notebooks or spreadsheets.
 
 ## Features
 
@@ -14,17 +14,19 @@ The project is designed for library staff or volunteers who need one place to ma
 - Library member records
 - Lending transactions
 - Book returns
-- Overdue loan checks
-- Search and filtering
-- Library summary information
+- Overdue loan status checking
 - Local SQLite data storage
 - Input validation and exception handling
+- Database transactions for lending and returns
+- Refresh controls for current records
 
 ## Current progress
 
-The application now supports the main book catalogue workflow plus member and lending records. Books can be saved and displayed from SQLite, members can be registered and displayed, and available books can be issued to active members with a due date. Returning an active loan restores the book's available-copy count. The interface includes separate Books, Members and Loans tabs with refresh controls, and database transactions are used when issuing and returning books so related records stay consistent when an operation fails.
+The final application contains the core library workflow. Books can be saved and displayed from SQLite, members can be registered and displayed, available books can be issued to active members with a due date, and active loans can be returned. Returning a loan restores the book's available-copy count. Active loans are checked against the current date when records are displayed so overdue loans can be identified. The interface uses separate Books, Members and Loans tabs and includes validation and exception handling for user input and database operations.
 
-The project continues to use the existing model structure, including the abstract LibraryItem base class, the Book subclass, Member and Loan models, the SQLite repository and the Windows Forms interface.
+The project uses an abstract LibraryItem base class, the Book subclass, Member and Loan models, a SQLite repository and a Windows Forms interface. Database transactions are used when issuing and returning books so the related loan and copy-count changes are committed together.
+
+The final scope focuses on the working catalogue, member and lending workflow rather than adding online accounts, reservations or payment features.
 
 ## Technology used
 

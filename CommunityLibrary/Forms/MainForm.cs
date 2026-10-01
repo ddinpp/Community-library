@@ -9,21 +9,24 @@ namespace CommunityLibrary.Forms;
 public class MainForm : Form
 {
     private readonly LibraryRepository repository;
-    private readonly Label statusLabel = null!;
-    private readonly TextBox isbnTextBox = null!;
-    private readonly TextBox titleTextBox = null!;
-    private readonly TextBox authorTextBox = null!;
-    private readonly TextBox categoryTextBox = null!;
-    private readonly NumericUpDown copiesInput = null!;
-    private readonly DataGridView booksGrid = null!;
-    private readonly TextBox memberNameTextBox = null!;
-    private readonly TextBox memberPhoneTextBox = null!;
-    private readonly TextBox memberEmailTextBox = null!;
-    private readonly DataGridView membersGrid = null!;
-    private readonly ComboBox loanBookComboBox = null!;
-    private readonly ComboBox loanMemberComboBox = null!;
-    private readonly NumericUpDown loanDaysInput = null!;
-    private readonly DataGridView loansGrid = null!;
+
+    private Label statusLabel = null!;
+    private TextBox isbnTextBox = null!;
+    private TextBox titleTextBox = null!;
+    private TextBox authorTextBox = null!;
+    private TextBox categoryTextBox = null!;
+    private NumericUpDown copiesInput = null!;
+    private DataGridView booksGrid = null!;
+
+    private TextBox memberNameTextBox = null!;
+    private TextBox memberPhoneTextBox = null!;
+    private TextBox memberEmailTextBox = null!;
+    private DataGridView membersGrid = null!;
+
+    private ComboBox loanBookComboBox = null!;
+    private ComboBox loanMemberComboBox = null!;
+    private NumericUpDown loanDaysInput = null!;
+    private DataGridView loansGrid = null!;
 
     public MainForm()
     {
@@ -52,8 +55,10 @@ public class MainForm : Form
 
         var booksTab = new TabPage("Books");
         BuildBooksTab(booksTab);
+
         var membersTab = new TabPage("Members");
         BuildMembersTab(membersTab);
+
         var loansTab = new TabPage("Loans");
         BuildLoansTab(loansTab);
 
@@ -80,23 +85,56 @@ public class MainForm : Form
         Controls.Add(tabs);
         Controls.Add(refreshAllButton);
         Controls.Add(statusLabel);
+
         RefreshAll();
     }
 
     private void BuildBooksTab(TabPage tab)
     {
-        tab.Controls.Add(new Label { Text = "Add a book to the catalogue.", AutoSize = true, Location = new Point(15, 15) });
+        tab.Controls.Add(new Label
+        {
+            Text = "Add a book to the catalogue.",
+            AutoSize = true,
+            Location = new Point(15, 15)
+        });
+
         isbnTextBox = CreateTextBox("ISBN", new Point(15, 55), 150);
         titleTextBox = CreateTextBox("Title", new Point(180, 55), 150);
         authorTextBox = CreateTextBox("Author", new Point(345, 55), 150);
         categoryTextBox = CreateTextBox("Category", new Point(510, 55), 150);
-        copiesInput = new NumericUpDown { Location = new Point(675, 55), Width = 80, Minimum = 1, Maximum = 1000, Value = 1 };
-        tab.Controls.Add(new Label { Text = "Copies", AutoSize = true, Location = new Point(675, 35) });
 
-        var saveButton = new Button { Text = "Save Book", Location = new Point(770, 53), Size = new Size(120, 30) };
+        copiesInput = new NumericUpDown
+        {
+            Location = new Point(675, 55),
+            Width = 80,
+            Minimum = 1,
+            Maximum = 1000,
+            Value = 1
+        };
+
+        tab.Controls.Add(new Label
+        {
+            Text = "Copies",
+            AutoSize = true,
+            Location = new Point(675, 35)
+        });
+
+        var saveButton = new Button
+        {
+            Text = "Save Book",
+            Location = new Point(770, 53),
+            Size = new Size(120, 30)
+        };
         saveButton.Click += SaveBookButton_Click;
+
         booksGrid = CreateGrid(new Point(15, 105), new Size(975, 355));
-        var refreshButton = new Button { Text = "Refresh Books", Location = new Point(15, 475), Size = new Size(120, 30) };
+
+        var refreshButton = new Button
+        {
+            Text = "Refresh Books",
+            Location = new Point(15, 475),
+            Size = new Size(120, 30)
+        };
         refreshButton.Click += (_, _) => LoadBooks();
 
         tab.Controls.Add(isbnTextBox);
@@ -111,14 +149,33 @@ public class MainForm : Form
 
     private void BuildMembersTab(TabPage tab)
     {
-        tab.Controls.Add(new Label { Text = "Register and view library members.", AutoSize = true, Location = new Point(15, 15) });
+        tab.Controls.Add(new Label
+        {
+            Text = "Register and view library members.",
+            AutoSize = true,
+            Location = new Point(15, 15)
+        });
+
         memberNameTextBox = CreateTextBox("Full name", new Point(15, 55), 230);
         memberPhoneTextBox = CreateTextBox("Phone", new Point(260, 55), 170);
         memberEmailTextBox = CreateTextBox("Email", new Point(445, 55), 250);
-        var saveMemberButton = new Button { Text = "Save Member", Location = new Point(710, 53), Size = new Size(120, 30) };
+
+        var saveMemberButton = new Button
+        {
+            Text = "Save Member",
+            Location = new Point(710, 53),
+            Size = new Size(120, 30)
+        };
         saveMemberButton.Click += SaveMemberButton_Click;
+
         membersGrid = CreateGrid(new Point(15, 105), new Size(975, 355));
-        var refreshButton = new Button { Text = "Refresh Members", Location = new Point(15, 475), Size = new Size(130, 30) };
+
+        var refreshButton = new Button
+        {
+            Text = "Refresh Members",
+            Location = new Point(15, 475),
+            Size = new Size(130, 30)
+        };
         refreshButton.Click += (_, _) => LoadMembers();
 
         tab.Controls.Add(memberNameTextBox);
@@ -131,17 +188,67 @@ public class MainForm : Form
 
     private void BuildLoansTab(TabPage tab)
     {
-        tab.Controls.Add(new Label { Text = "Issue an available book to an active member.", AutoSize = true, Location = new Point(15, 15) });
-        loanBookComboBox = new ComboBox { Location = new Point(15, 55), Width = 300, DropDownStyle = ComboBoxStyle.DropDownList };
-        loanMemberComboBox = new ComboBox { Location = new Point(330, 55), Width = 260, DropDownStyle = ComboBoxStyle.DropDownList };
-        loanDaysInput = new NumericUpDown { Location = new Point(605, 55), Width = 80, Minimum = 1, Maximum = 60, Value = 14 };
-        tab.Controls.Add(new Label { Text = "Days", AutoSize = true, Location = new Point(605, 35) });
-        var issueButton = new Button { Text = "Issue Book", Location = new Point(700, 53), Size = new Size(110, 30) };
+        tab.Controls.Add(new Label
+        {
+            Text = "Issue an available book to an active member.",
+            AutoSize = true,
+            Location = new Point(15, 15)
+        });
+
+        loanBookComboBox = new ComboBox
+        {
+            Location = new Point(15, 55),
+            Width = 300,
+            DropDownStyle = ComboBoxStyle.DropDownList
+        };
+
+        loanMemberComboBox = new ComboBox
+        {
+            Location = new Point(330, 55),
+            Width = 260,
+            DropDownStyle = ComboBoxStyle.DropDownList
+        };
+
+        loanDaysInput = new NumericUpDown
+        {
+            Location = new Point(605, 55),
+            Width = 80,
+            Minimum = 1,
+            Maximum = 60,
+            Value = 14
+        };
+
+        tab.Controls.Add(new Label
+        {
+            Text = "Days",
+            AutoSize = true,
+            Location = new Point(605, 35)
+        });
+
+        var issueButton = new Button
+        {
+            Text = "Issue Book",
+            Location = new Point(700, 53),
+            Size = new Size(110, 30)
+        };
         issueButton.Click += IssueBookButton_Click;
-        var returnButton = new Button { Text = "Return Selected", Location = new Point(820, 53), Size = new Size(140, 30) };
+
+        var returnButton = new Button
+        {
+            Text = "Return Selected",
+            Location = new Point(820, 53),
+            Size = new Size(140, 30)
+        };
         returnButton.Click += ReturnBookButton_Click;
+
         loansGrid = CreateGrid(new Point(15, 105), new Size(975, 355));
-        var refreshButton = new Button { Text = "Refresh Loans", Location = new Point(15, 475), Size = new Size(120, 30) };
+
+        var refreshButton = new Button
+        {
+            Text = "Refresh Loans",
+            Location = new Point(15, 475),
+            Size = new Size(120, 30)
+        };
         refreshButton.Click += (_, _) => LoadLoans();
 
         tab.Controls.Add(loanBookComboBox);
@@ -179,11 +286,15 @@ public class MainForm : Form
         var category = categoryTextBox.Text.Trim();
         var copies = (int)copiesInput.Value;
 
-        if (string.IsNullOrWhiteSpace(isbn) || string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || string.IsNullOrWhiteSpace(category))
+        if (string.IsNullOrWhiteSpace(isbn) ||
+            string.IsNullOrWhiteSpace(title) ||
+            string.IsNullOrWhiteSpace(author) ||
+            string.IsNullOrWhiteSpace(category))
         {
             ShowValidation("Please complete ISBN, title, author and category.");
             return;
         }
+
         if (isbn.Length > 20 || title.Length > 150 || author.Length > 100 || category.Length > 80)
         {
             ShowValidation("One or more book fields are too long.");
@@ -198,8 +309,14 @@ public class MainForm : Form
             LoadLoanBooks();
             statusLabel.Text = "Book saved successfully.";
         }
-        catch (SqliteException ex) { ShowError("Database Error", "The book could not be saved.", ex); }
-        catch (Exception ex) { ShowError("Error", "The book could not be saved.", ex); }
+        catch (SqliteException ex)
+        {
+            ShowError("Database Error", "The book could not be saved.", ex);
+        }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The book could not be saved.", ex);
+        }
     }
 
     private void SaveMemberButton_Click(object? sender, EventArgs e)
@@ -208,12 +325,18 @@ public class MainForm : Form
         var phone = memberPhoneTextBox.Text.Trim();
         var email = memberEmailTextBox.Text.Trim();
 
-        if (string.IsNullOrWhiteSpace(fullName) || string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(email))
+        if (string.IsNullOrWhiteSpace(fullName) ||
+            string.IsNullOrWhiteSpace(phone) ||
+            string.IsNullOrWhiteSpace(email))
         {
             ShowValidation("Please complete name, phone and email.");
             return;
         }
-        if (fullName.Length > 100 || phone.Length > 30 || email.Length > 150 || !email.Contains('@'))
+
+        if (fullName.Length > 100 ||
+            phone.Length > 30 ||
+            email.Length > 150 ||
+            !email.Contains('@'))
         {
             ShowValidation("Enter valid member details.");
             return;
@@ -229,13 +352,20 @@ public class MainForm : Form
             LoadLoanMembers();
             statusLabel.Text = "Member saved successfully.";
         }
-        catch (SqliteException ex) { ShowError("Database Error", "The member could not be saved.", ex); }
-        catch (Exception ex) { ShowError("Error", "The member could not be saved.", ex); }
+        catch (SqliteException ex)
+        {
+            ShowError("Database Error", "The member could not be saved.", ex);
+        }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The member could not be saved.", ex);
+        }
     }
 
     private void IssueBookButton_Click(object? sender, EventArgs e)
     {
-        if (loanBookComboBox.SelectedItem is not BookOption book || loanMemberComboBox.SelectedItem is not MemberOption member)
+        if (loanBookComboBox.SelectedItem is not BookOption book ||
+            loanMemberComboBox.SelectedItem is not MemberOption member)
         {
             ShowValidation("Select a book and an active member.");
             return;
@@ -245,15 +375,26 @@ public class MainForm : Form
         {
             var loanDate = DateTime.Now;
             var dueDate = loanDate.Date.AddDays((int)loanDaysInput.Value);
+
             repository.AddLoan(new Loan(0, book.BookId, member.MemberId, loanDate, dueDate));
+
             LoadBooks();
             LoadLoans();
             LoadLoanBooks();
             statusLabel.Text = $"Book issued to {member.FullName}.";
         }
-        catch (InvalidOperationException ex) { ShowValidation(ex.Message); }
-        catch (SqliteException ex) { ShowError("Database Error", "The loan could not be created.", ex); }
-        catch (Exception ex) { ShowError("Error", "The loan could not be created.", ex); }
+        catch (InvalidOperationException ex)
+        {
+            ShowValidation(ex.Message);
+        }
+        catch (SqliteException ex)
+        {
+            ShowError("Database Error", "The loan could not be created.", ex);
+        }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The loan could not be created.", ex);
+        }
     }
 
     private void ReturnBookButton_Click(object? sender, EventArgs e)
@@ -267,55 +408,98 @@ public class MainForm : Form
         try
         {
             repository.ReturnLoan(loanId, DateTime.Now);
+
             LoadBooks();
             LoadLoans();
             LoadLoanBooks();
             statusLabel.Text = "Book returned successfully.";
         }
-        catch (InvalidOperationException ex) { ShowValidation(ex.Message); }
-        catch (SqliteException ex) { ShowError("Database Error", "The book could not be returned.", ex); }
-        catch (Exception ex) { ShowError("Error", "The book could not be returned.", ex); }
+        catch (InvalidOperationException ex)
+        {
+            ShowValidation(ex.Message);
+        }
+        catch (SqliteException ex)
+        {
+            ShowError("Database Error", "The book could not be returned.", ex);
+        }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The book could not be returned.", ex);
+        }
     }
 
     private void LoadBooks()
     {
         try
         {
-            booksGrid.DataSource = repository.GetBooks().Select(book => new
-            {
-                book.BookId, book.ISBN, book.Title, book.Author, book.Category,
-                book.TotalCopies, book.AvailableCopies, book.IsAvailable
-            }).ToList();
+            booksGrid.DataSource = repository.GetBooks()
+                .Select(book => new
+                {
+                    book.BookId,
+                    book.ISBN,
+                    book.Title,
+                    book.Author,
+                    book.Category,
+                    book.TotalCopies,
+                    book.AvailableCopies,
+                    book.IsAvailable
+                })
+                .ToList();
+
             statusLabel.Text = $"Books displayed: {booksGrid.Rows.Count}";
         }
-        catch (Exception ex) { ShowError("Error", "The book records could not be loaded.", ex); }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The book records could not be loaded.", ex);
+        }
     }
 
     private void LoadMembers()
     {
         try
         {
-            membersGrid.DataSource = repository.GetMembers().Select(member => new
-            {
-                member.MemberId, member.FullName, member.Phone, member.Email, member.IsActive
-            }).ToList();
+            membersGrid.DataSource = repository.GetMembers()
+                .Select(member => new
+                {
+                    member.MemberId,
+                    member.FullName,
+                    member.Phone,
+                    member.Email,
+                    member.IsActive
+                })
+                .ToList();
+
             statusLabel.Text = $"Members displayed: {membersGrid.Rows.Count}";
         }
-        catch (Exception ex) { ShowError("Error", "The member records could not be loaded.", ex); }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The member records could not be loaded.", ex);
+        }
     }
 
     private void LoadLoans()
     {
         try
         {
-            loansGrid.DataSource = repository.GetLoans().Select(loan => new
-            {
-                loan.LoanId, loan.BookId, loan.MemberId, loan.LoanDate,
-                loan.DueDate, loan.ReturnDate, loan.Status
-            }).ToList();
+            loansGrid.DataSource = repository.GetLoans()
+                .Select(loan => new
+                {
+                    loan.LoanId,
+                    loan.BookId,
+                    loan.MemberId,
+                    loan.LoanDate,
+                    loan.DueDate,
+                    loan.ReturnDate,
+                    Status = loan.IsOverdue(DateTime.Today) ? LoanStatus.Overdue : loan.Status
+                })
+                .ToList();
+
             statusLabel.Text = $"Loans displayed: {loansGrid.Rows.Count}";
         }
-        catch (Exception ex) { ShowError("Error", "The loan records could not be loaded.", ex); }
+        catch (Exception ex)
+        {
+            ShowError("Error", "The loan records could not be loaded.", ex);
+        }
     }
 
     private void LoadLoanBooks()
@@ -323,19 +507,27 @@ public class MainForm : Form
         try
         {
             var selectedId = (loanBookComboBox.SelectedItem as BookOption)?.BookId;
+
             var options = repository.GetBooks()
                 .Where(book => book.AvailableCopies > 0)
-                .Select(book => new BookOption(book.BookId, $"{book.Title} ({book.AvailableCopies} available)"))
+                .Select(book => new BookOption(
+                    book.BookId,
+                    $"{book.Title} ({book.AvailableCopies} available)"))
                 .ToList();
+
             loanBookComboBox.DataSource = options;
             loanBookComboBox.DisplayMember = nameof(BookOption.DisplayText);
             loanBookComboBox.ValueMember = nameof(BookOption.BookId);
+
             if (selectedId.HasValue && options.Any(option => option.BookId == selectedId.Value))
             {
                 loanBookComboBox.SelectedValue = selectedId.Value;
             }
         }
-        catch (Exception ex) { ShowError("Error", "Available books could not be loaded.", ex); }
+        catch (Exception ex)
+        {
+            ShowError("Error", "Available books could not be loaded.", ex);
+        }
     }
 
     private void LoadLoanMembers()
@@ -346,11 +538,15 @@ public class MainForm : Form
                 .Where(member => member.IsActive)
                 .Select(member => new MemberOption(member.MemberId, member.FullName))
                 .ToList();
+
             loanMemberComboBox.DataSource = options;
             loanMemberComboBox.DisplayMember = nameof(MemberOption.DisplayText);
             loanMemberComboBox.ValueMember = nameof(MemberOption.MemberId);
         }
-        catch (Exception ex) { ShowError("Error", "Active members could not be loaded.", ex); }
+        catch (Exception ex)
+        {
+            ShowError("Error", "Active members could not be loaded.", ex);
+        }
     }
 
     private void RefreshAll()
@@ -373,10 +569,18 @@ public class MainForm : Form
         isbnTextBox.Focus();
     }
 
-    private static void ShowValidation(string message) => MessageBox.Show(message, "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    private static void ShowError(string title, string message, Exception ex) => MessageBox.Show($"{message}\n\n{ex.Message}", title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+    private static void ShowValidation(string message) =>
+        MessageBox.Show(message, "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+    private static void ShowError(string title, string message, Exception ex) =>
+        MessageBox.Show(
+            $"{message}\n\n{ex.Message}",
+            title,
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
 
     private sealed record BookOption(int BookId, string DisplayText);
+
     private sealed record MemberOption(int MemberId, string FullName)
     {
         public string DisplayText => FullName;
