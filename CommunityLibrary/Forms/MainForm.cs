@@ -719,6 +719,7 @@ public class MainForm : Form
         authorTextBox.Clear();
         categoryTextBox.Clear();
         copiesInput.Value = 1;
+        isbnTextBox.Focus();
     }
 
     private void RefreshAll()
@@ -730,6 +731,7 @@ public class MainForm : Form
         LoadLoanMembers();
         LoadCustomerBooks();
         LoadCustomerMembers();
+        statusLabel.Text = "Records refreshed.";
     }
 
     private static void ShowValidation(string message)
@@ -744,5 +746,8 @@ public class MainForm : Form
 
     private sealed record BookOption(int BookId, string DisplayText);
 
-    private sealed record MemberOption(int MemberId, string DisplayText);
+    private sealed record MemberOption(int MemberId, string FullName)
+    {
+        public string DisplayText => FullName;
+    }
 }
